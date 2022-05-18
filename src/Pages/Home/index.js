@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, FlatList, Button, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
  const Home=()=>{
@@ -8,13 +8,13 @@ import { Feather } from '@expo/vector-icons';
     const [feed, setFeed] =useState([]);
 
     // pegando nosso feed
-    //aindaTrabalhando na tela ...... useEffect(() => {
+    // useEffect(() => {
     //    fetch('https://aurora-django-app.herokuapp.com/feed_count=0')
     //    .then((re)=>re.json())
-    //    .then((re)=>{
-    //          setFeed(re.response);
+    //    .then((re)=>setFeed(re.response))
+    //    .catch(()=>(alert('Erro ao carregar')))      
+                
 
-    //    })
     // }, []);
     return (
       <View>
@@ -42,7 +42,31 @@ import { Feather } from '@expo/vector-icons';
                 ESPAÇO PARA UMA POSSIVEL PROPAGANDA
               />
           </View>
-
+          <View style={styles.mainPostView}>
+              {feed.length <1?
+                  <ActivityIndicator 
+                    size={"large"} 
+                    color={"#2FBBF0"}
+                  />
+                  :
+                      <FlatList
+                          data={feed}
+                          keyExtractor={(item,index)=>{return item.post_id.toFixed()}}
+                          renderItem={({item, index})=>(
+                              <View style={styles.postView}>
+                                  <View style={styles.postTtile}> 
+                                      <View style={styles.imageView}>
+                                          <Image style={styles.artistPhoto} source={{uri:item.artist_photo}}/>
+                                          <Text>Name E Title</Text>
+                                      </View>
+                                  </View>
+                                    
+                              </View>
+                          )}
+                      /> 
+              }
+          </View>
+    
             <StatusBar style="auto" />
       </View>
   );
@@ -84,4 +108,28 @@ const styles = StyleSheet.create({
     width:'85%',
     height:'90'
   },
+  mainPostView:{
+    width:'100%',  
+  },
+  postTtile:{
+    width:'90%',
+    display:'flex',
+    justifyContent:'space-between',
+    flexDirection:'row'
+  },
+  postView:{
+    width:'90%',
+    alignItems:'center',
+    marginTop:'20',
+  },
+  artistPhoto:{
+    backgroundColor:'rgba(0,0,0,0.06)',
+    width:50,
+    height:50,
+    borderRadius:50,
+  },
+  imageView:{
+    display:'flex',
+    flexDirection:'row'
+  }
 });
