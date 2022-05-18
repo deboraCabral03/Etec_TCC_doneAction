@@ -1,31 +1,53 @@
-import  React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image} from 'react-native';
+import  React, { useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Input} from 'react-native-elements'
 
 export default function Login({ navigation }) {
-  const MyComponent = () => {
-    const [text, setText] = React.useState('')};
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [errorEmail, setErrorEmail] = useState(null)
+  const [errorPassword, setErrorPasswordl] = useState(null)
+  
+  const validate = () => {
+    if (email == null)
+    setErrorEmail("Preencha seu e-mail corretamente")
+    return false
+  }
+
+  const login = () => {
+    if (validate()){
+      console.log("Logando")
+    }
+    navigation.navigate('Home')
+  }
+
+
   return (
     <View style={styles.container}>
+        <Input
+          style={styles.caixa}
+          placeholder="Email" 
+          //autocorrect={false}
+          onChangeText={value => setEmail(value)}
+          keyboardType="email-address"
+          errorMessage={errorEmail}
+        />
 
-      <TextInput
-       style={styles.caixa}
-       placeholder="Email" 
-       autocorrect={false}
-       onChangeText={()=>{} }/>
-
-       <TextInput
-        style={styles.caixa}
-        placeholder="Senha" 
-         secureTextEntry
-     right={<TextInput.Icon name="eye" />}
-   />
+        <Input
+          style={styles.caixa}
+          placeholder="Senha" 
+          //autocorrect={false}
+          onChangeText={value => setPassword(value)}
+          secureTextEntry={true}
+          errorMessage={errorPassword}
+        />
 
          <TouchableOpacity style={styles.componente}>
          <Text style={styles.registro}> Esqueceu a senha?</Text>
          </TouchableOpacity> 
 
        <TouchableOpacity style={styles.mensagem}
-        onPress={ () => navigation.navigate('Home')}>
+        onPress={() => login()}>
        <Text style={styles.acesso}>  Acessar </Text>
        </TouchableOpacity> 
 

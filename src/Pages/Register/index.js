@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 
 
 export default function Register({ navigation }) {
+  
   return (
 
     <KeyboardAvoidingView style={styles.background}>
