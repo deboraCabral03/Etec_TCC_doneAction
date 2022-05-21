@@ -7,18 +7,34 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState(null)
   const [errorEmail, setErrorEmail] = useState(null)
   const [errorPassword, setErrorPasswordl] = useState(null)
-  
+
+  // const declarando o que não pode ter no email
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  //cont responsável por fazer a validação dos inputs email e senha
   const validate = () => {
-    if (email == null)
+    let error = false 
+    setErrorEmail(null)
+    setErrorPasswordl(null)
+    if (!re.test(String(email).toLowerCase())){
     setErrorEmail("Preencha seu e-mail corretamente")
-    return false
+    error = true
+    }
+    if (password == null){
+      setErrorPasswordl("Email ou senha incorrentos")
+      error = true
+      this.navigation.navigate('Home')
+    }
+
   }
 
+
+//const chamada no onpress do botão "Acessar"
   const login = () => {
     if (validate()){
-      console.log("Logando")
     }
-    navigation.navigate('Home')
+    
+   
   }
 
 
@@ -28,7 +44,10 @@ export default function Login({ navigation }) {
           style={styles.caixa}
           placeholder="Email" 
           //autocorrect={false}
-          onChangeText={value => setEmail(value)}
+          onChangeText={value =>{ 
+            setEmail(value)
+            setErrorEmail(null)
+          }}
           keyboardType="email-address"
           errorMessage={errorEmail}
         />
@@ -37,7 +56,10 @@ export default function Login({ navigation }) {
           style={styles.caixa}
           placeholder="Senha" 
           //autocorrect={false}
-          onChangeText={value => setPassword(value)}
+          onChangeText={value =>{
+            setErrorPasswordl(null)
+            setPassword(value)
+          }}
           secureTextEntry={true}
           errorMessage={errorPassword}
         />
