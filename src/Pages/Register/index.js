@@ -41,6 +41,7 @@ export default function Register({ navigation }) {
          <TextInput
         style={styles.input}
           placeholder="Senha" 
+          secureTextEntry={true}
           autocorrect={false}
           onChangeText={()=>{} }
         />
@@ -48,6 +49,7 @@ export default function Register({ navigation }) {
          <TextInput
         style={styles.input}
           placeholder="Confirme a senha" 
+          secureTextEntry={true}
           autocorrect={false}
           onChangeText={()=>{} }
         />
@@ -85,12 +87,10 @@ export default function Register({ navigation }) {
 const styles = StyleSheet.create({
   background:{
     flex:1,
-    alignItems:'center',
-    justifyContent:'center',
     backgroundColor:'#E5E5E'
   },
   top:{
-    alignSelf:'rigth',
+    alignSelf:'left',
     alignItems:'center',
     marginTop:50,
     width:'20%',
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
 
   containerLogo:{
    alignItems:'center',
+   justifyContent:'center',
    width:'30%',
    height:'10%',
   },
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems:'center',
     justifyContent:'center',
+    alignSelf:'center',
     width:'90%',
     paddingBottom:30,
   },
@@ -128,8 +130,9 @@ const styles = StyleSheet.create({
     borderRadius:50,
     width:35,
     height:35,
-    alignItems:'center',
-    justifyContent:'center',
+    marginLeft:50,
+    alignItems:'left',
+    justifyContent:'left',
   },
     //estilo do botao acessar
   btnSubmit:{

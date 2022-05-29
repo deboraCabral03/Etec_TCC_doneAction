@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 
 import Login from '../Pages/Login';
 import Home from '../Pages/Home';
+import forgotPassword from '../Pages/Login';
 import Register from '../Pages/Register';
 import Profile from '../Pages/Profile';
 import Notifications from '../Pages/Notifications';
@@ -102,7 +103,7 @@ export default function Routes(){
         name = 'Home'
         component = {MyTabs}
         options = {{
-            title: 'Página de Perfil',
+            title: 'Início',
             headerShown: false
         }}
       />
@@ -111,6 +112,14 @@ export default function Routes(){
         component = {Register}
         options = {{
             title: 'Add or Edit Project',
+            headerShown: false
+        }}
+      />
+      <Drawer.Screen
+        name = 'forgotPassword'
+        component = {forgotPassword}
+        options = {{
+            title: 'forgotPassword',
             headerShown: false
         }}
       />
