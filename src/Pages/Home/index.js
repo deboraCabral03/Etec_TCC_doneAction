@@ -20,7 +20,7 @@ import { Feather } from '@expo/vector-icons';
       <View>
           <View style={styles.mainView}>
               <Text style={styles.Heading}>Menu</Text>
-                  <TouchableOpacity styles={{alignSelf:'right'}}>
+                  <TouchableOpacity style={{alignSelf: 'right'}}>
                       <Feather 
                         name='filter'
                         size={27}
@@ -77,12 +77,14 @@ const styles = StyleSheet.create({
   mainView:{
       flexDirection:'row',
       marginTop:30,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      flex:1
   },
   Heading:{
       fontSize:18,
       fontWeight:'bold',
       color: '#34816F',
+      marginHorizontal: 90
   },
   containerInputSearch:{
       marginTop: 30,
