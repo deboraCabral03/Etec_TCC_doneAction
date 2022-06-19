@@ -1,6 +1,9 @@
 import  React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {Input} from 'react-native-elements'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Input} from 'react-native-elements';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+
 
 
 export default function Login({ navigation }) {
@@ -39,8 +42,8 @@ export default function Login({ navigation }) {
     //função para enviar o formulario para o controller
   async function sendForm()
   {
-      let response=await fetch('http://192.168.43.164:3000/login',{
-          method: 'POST',
+      let response=await fetch('http://172.20.10.6:3000/login',{
+          method: 'GET',
           headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json'
@@ -65,24 +68,24 @@ export default function Login({ navigation }) {
 //const chamada no onpress do botão "Acessar"
   const login = () => {
     if (validate()){
-     //sendForm()
+     sendForm()
      navigation.navigate('Home');
     }
     }
 
   return (
-    <View>
-    <View>
+    <View style={{backgroundColor:'white',flex: '1',}}>
+    <View >
         <Image  
                     source={require('../Images/logo.jpeg')} 
-                    style={{width:400, height:250, marginTop: 55}}
+                    style={{width:400, alignSelf:'center', height:250, marginTop: 55, marginBottom:20}}
                     resizeMode="contain"
                 />
     </View>    
     <View style={styles.container}>
         <Input
           style={styles.caixa}
-          placeholder="Email" 
+          placeholder="  Email" 
           //autocorrect={false}
           onChangeText={value =>{ 
             setEmail(value)
@@ -93,7 +96,7 @@ export default function Login({ navigation }) {
         />
         <Input
           style={styles.caixa}
-          placeholder="Senha" 
+          placeholder="  Senha" 
           //autocorrect={false}
           onChangeText={value =>{
             setErrorPassword(null)
@@ -108,26 +111,40 @@ export default function Login({ navigation }) {
         </TouchableOpacity> 
 
         <TouchableOpacity style={styles.mensagem}
-          onPress={() => login()}>
+          onPress={() => navigation.navigate('Home')}>
           <Text style={styles.acesso}>  Acessar </Text>
         </TouchableOpacity> 
 
        <Text style={styles.conta}> Não tem uma conta? </Text>
           <TouchableOpacity style={styles.insc}
             onPress={ () => navigation.navigate('Register')}>
-            <Text style={styles.inscrever}> INSCREVA-SE</Text>
+            <Text style={styles.inscrever}>  INSCREVA-SE</Text>
           </TouchableOpacity> 
-              <Text style={{marginLeft: 90, marginTop: -160}}> ou inscreva-se com </Text>
-
+              <Text style={{marginLeft: 90, marginTop: -160, fontSize:'18',}}> ou entre com </Text>
+              <View style={styles.socialMidiaIcon}>
+                <TouchableOpacity style={styles.touchableSocialMidia}>
+                    <MaterialCommunityIcons 
+                      name='facebook'
+                      size={29}
+                      color="white"
+                    />
+                </TouchableOpacity>    
+                <TouchableOpacity style={styles.touchableSocialMidia}>
+                    <AntDesign 
+                      name='google'
+                      size={28}
+                      color="white"
+                    />
+                </TouchableOpacity>
+            </View>
    </View>
-   </View>
+  </View>
  );
 }
 const styles = StyleSheet.create({
  container: {
-   flex: 1,
    justifyContent: 'center',
-   backgroundColor: '#fff',
+   backgroundColor: 'white',
    padding: 8,
  },
   
@@ -168,21 +185,21 @@ const styles = StyleSheet.create({
 
  componente:{
         alignItems: "center",
-    //  marginTop: -190,
         marginBottom:10,
         marginLeft: 90,
      },
 
  registro:{
        fontSize: 13,
-       fontFamily: 'roboto',
-       marginLeft: '60%',
+       fontFamily: 'arial',
+       marginLeft: '59%',
      },
 
   conta:{
        marginBottom: 176,
        marginTop: -130,
-       marginLeft: 40
+       marginLeft: 40,
+       fontSize:'18',
      },
 
    insc:{ 
@@ -190,13 +207,22 @@ const styles = StyleSheet.create({
        marginTop: -194,
        marginLeft: 173,
    },
-
-   inscrever:{  fontWeight: 'bold',
-                   color: '#D0BAF3'
+   inscrever:{  
+    fontWeight: 'bold',
+    color: '#D0BAF3'
 
    },
 
-  
-
-
+   socialMidiaIcon:{
+    marginTop:'8%',
+    flexDirection:'row',
+    alignSelf:'center'
+    
+  },
+  touchableSocialMidia:{
+    borderRadius:'100%',
+    backgroundColor:'#987FC0',
+    marginHorizontal:'8%'
+    
+  }
 });

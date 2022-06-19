@@ -1,20 +1,100 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Text, View, StyleSheet, ScrollView, TextInput} from 'react-native';
+import { Divider } from 'react-native-paper';
+import { Feather }  from "@expo/vector-icons";
 
-export default function Chat() {
+export default function App() {
+const [searchInput, setSearchInput] = useState('');
+
+    const [feed, setFeed] =useState([]);
+
   return (
-    <View style={styles.container}>
-      <Text>Tela para desenvolver Chat!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <View style={{flex:"1"}}>
+        <View style={{marginTop:"15%", flexDirection:"row"}}>
+        <TouchableOpacity style={{alignSelf:"left"}}>
+              <Feather
+              name='chevron-left'
+              size={27}
+              color="#f5cae6"
+              />
+            </TouchableOpacity>
+            <Text style={{marginHorizontal:"32%", fontWeight: "bold", color:"#34816F" }}> Chat </Text>
+              <Feather
+              name='edit'
+              size={25}
+              color="#f5cae6"
+              />
+        </View>
+        <View style={styles.containerInputSearch}>
+            <TextInput
+              value={searchInput}
+                onChangeText={(val)=>setSearchInput(val)}
+                placeholder={"  Pesquisar "}
+                placeholderTextColor={"#808080"}
+                style={styles.searchInput}
+            />
+        </View>
+        <View style={styles.container}>
+        <ScrollView>
+         <TouchableOpacity style={styles.touchable}
+            title="OI"
+            color="#0000">
+            <Feather
+              name='message-square'
+              size={20}
+              color="#34816F"
+              />
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            </TouchableOpacity>
+            
+            </ScrollView>
+        </View>
+  </View>
+    
+
+   );
 }
 
+
+        
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  searchInput:{
+    width: '90%',
+    height: 39,
+    borderRadius: 10,
+    backgroundColor:"white",
+    borderWidth:2.5,
+    borderColor:"#DBD9D9",
+    fontSize: 18,
   },
-});
+  containerInputSearch:{
+      marginTop: 15,
+      flexDirection: 'row',
+      justifyContent:'center',
+
+  },
+    touchable:{
+    backgroundColor:'D8D6D6',
+    marginTop:'1%',
+    justifyContent: "center",
+    alignSelf: "center",
+    borderWidth: 1, 
+    borderColor: '#A9A9A9',
+    width: '97%',
+    height:"70%",
+    borderRadius : 1 ,
+    paddingVertical : 10 , 
+    paddingHorizontal : 12, 
+  
+  },
+  
+  container:{
+    backgroundColor:"#D8D6D6", 
+    marginTop:"4%", 
+    width:"95%",
+    borderColor: '#34816F',
+    borderRadius : 5 ,
+    alignSelf:"center",
+    height:"50%",
+  },
+  });

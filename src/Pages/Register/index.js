@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import Constants from 'expo-constants';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 
 
 export default function Register({ navigation }) {
@@ -8,7 +9,6 @@ export default function Register({ navigation }) {
   return (
 
     <KeyboardAvoidingView style={styles.background}>
-
       <View style={styles.top}>
         <TouchableOpacity style={styles.btnBack}
         onPress={ () => navigation.navigate('Login')}>
@@ -65,29 +65,33 @@ export default function Register({ navigation }) {
         <TouchableOpacity style={styles.btnSubmit}>
           <Text style={styles.submitText}> Cadastrar </Text>
         </TouchableOpacity> 
-
-        <TouchableOpacity style={styles.btnRegister}>
-          <Text style={styles.registerText}> Criar Conta </Text>
-        </TouchableOpacity> 
     
         <Text style={styles.txtConect}> ou conecte-se com </Text>
-        <Image  source={{uri:'https://static.todamateria.com.br/upload/ba/nd/bandeiradobrasil-0-cke.jpg'}}
-        style={styles.link} /> 
+            <View style={styles.socialMidiaIcon}>
+                <TouchableOpacity style={styles.touchableSocialMidia}>
+                    <MaterialCommunityIcons 
+                      name='facebook'
+                      size={29}
+                      color="white"
+                    />
+                </TouchableOpacity>    
+                <TouchableOpacity style={styles.touchableSocialMidia}>
+                    <AntDesign 
+                      name='google'
+                      size={28}
+                      color="white"
+                    />
+                </TouchableOpacity>
+            </View>  
       </View>
-      
     </KeyboardAvoidingView>
   );
 }
 
-
-//após criar os campos, iniciar a estilização dos campos
-//importar o styleSheet
-//criar a contante para estilizar
-
 const styles = StyleSheet.create({
   background:{
     flex:1,
-    backgroundColor:'#E5E5E'
+    backgroundColor:'white'
   },
   top:{
     alignSelf:'left',
@@ -146,7 +150,8 @@ const styles = StyleSheet.create({
   submitText:{
     color:'#FFFFFF',
     fontSize:20,
-    fontStyle: 'Roboto'
+    fontStyle: 'Roboto',
+    alignSelf:'center',
   },
     //stilo dos botoes conectar  
   btnRegister:{
@@ -159,11 +164,20 @@ const styles = StyleSheet.create({
   txtConect:{
     color:'#141414',
     fontSize:18,
-    fontStyle: 'Roboto'
+    fontStyle: 'Roboto',
+    marginTop:'15%',
   },
-  link:{
-    weight:50,
-    height:50
-
+  socialMidiaIcon:{
+    marginTop:'10%',
+    flexDirection:'row',
+    marginHorizontal:'5%',
+    alignSelf:'center'
+    
+  },
+  touchableSocialMidia:{
+    borderRadius:'100%',
+    backgroundColor:'#987FC0',
+    marginHorizontal:'10%'
+    
   }
 });

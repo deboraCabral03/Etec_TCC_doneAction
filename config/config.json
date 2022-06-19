@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": "debora759",
-    "database": "doneaction",
+    "username": "yourroot",
+    "password": "yourpassword",
+    "database": "yourdata",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
