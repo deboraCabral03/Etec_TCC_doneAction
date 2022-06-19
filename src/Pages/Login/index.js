@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     color: '#D0BAF3'
 
    },
+
    socialMidiaIcon:{
     marginTop:'8%',
     flexDirection:'row',
