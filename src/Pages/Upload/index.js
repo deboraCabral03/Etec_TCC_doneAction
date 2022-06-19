@@ -13,7 +13,7 @@ export default function Upload({ navigation }) {
       <StatusBar style="auto" />
     </View>
   );
-}
+  }
 
 const styles = StyleSheet.create({
   container: {

@@ -1,137 +1,174 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Text, View, FlatList, Button, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, ScrollView, View, Image, FlatList, Button, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import Header from './header';
+import SeparatorItem from './separatorItem';
 
- const Home=()=>{
-    const [searchInput, setSearchInput] = useState('');
-    const [feed, setFeed] =useState([]);
+const logo = require("../Images/logo.jpeg");
+const logo2 = require("../Images/logo.jpeg");
+const logo3 = require("../Images/logo.jpeg");
+const DATA = [
 
-    // pegando nosso feed
-    // useEffect(() => {
-    //    fetch('https://aurora-django-app.herokuapp.com/feed_count=0')
-    //    .then((re)=>re.json())
-    //    .then((re)=>setFeed(re.response))
-    //    .catch(()=>(alert('Erro ao carregar')))      
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Blusa de frio GAP, tamanho 12.",
+    image:require("../Images/perfil.jpeg"),
+    name: "Debora Cabral",
+    post:require("../Images/doacao1.jpeg"),
+  },
+  {
+    id: "88694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Boneco Mário, 30cm, em bom estado",
+    image:require("../Images/perfil2.jpeg"),
+    name: "Vitor Gomes",
+    post:require("../Images/brinquedo.jpeg"),
+  },
+  {
+    id: "75694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Cama solteiro, madeira de qualidade, sem colchão",
+    image:require("../Images/perfil3.jpeg"),
+    name: "Murilo Cavalcanti",
+    post:require("../Images/doacao3.jpeg"),
+  },
+  {
+    id: "08624a0f-3da1-471f-bd96-145571e29d72",
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image:require("../Images/perfil4.jpeg"),
+    name: "Camila Cesco",
+    post:require("../Images/doacao2.jpeg"),
+  },
+  {
+    id: "67624a0f-3da1-471f-bd96-145571e29d72",
+    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image:require("../Images/doacao5.jpeg"),
+    name: "Stefany Cardoso",
+    post:require("../Images/perfil5.jpeg"),
+  },
+];
+const Item = ({ item, onPress, backgroundColor, textColor, }) => (
+  <View style={styles.feedItem}>
+                <Image  
+                    source={item.image}
+                    style={styles.avatar}/>
+                <View style={{ flex: 1 }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                </View>
                 
-
-    // }, []);
-    return (
-      <View>
-          <View style={styles.mainView}>
-              <Text style={styles.Heading}>Menu</Text>
-                  <TouchableOpacity style={{alignSelf: 'right'}}>
+                <View>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Image source={item.post} style={styles.postImage} resizeMode="cover" />
+                    <Text style={styles.post}>{item.title}</Text>
+                    <TouchableOpacity style={styles.True}>
                       <Feather 
-                        name='filter'
-                        size={27}
-                        color="#987FC0"
-                      />
-                  </TouchableOpacity>
-          </View>
-          <View style={styles.containerInputSearch}>
-              <TextInput 
-                value={searchInput} 
-                onChangeText={(val)=>setSearchInput(val)}
-                placeholder={" 🔍 Pesquisar Ex: Eletrodoméstico"}
-                placeholderTextColor={"#808080"}
-                style={styles.searchInput}
-              />
-          </View>
-          <View style={styles.propaganda}>
-              <Text style={{fontSize:14,}}
-                ESPAÇO PARA UMA POSSIVEL PROPAGANDA
-              />
-          </View>
-          <View style={styles.mainPostView}>
-              {feed.length <1?
-                  <ActivityIndicator 
-                    size={"large"} 
-                    color={"#2FBBF0"}
-                  />
-                  :
-                      <FlatList
-                          data={feed}
-                          keyExtractor={(item,index)=>{return item.post_id.toFixed()}}
-                          renderItem={({item, index})=>(
-                              <View style={styles.postView}>
-                                  <View style={styles.postTtile}> 
-                                      <View style={styles.imageView}>
-                                          <Image style={styles.artistPhoto} source={{uri:item.artist_photo}}/>
-                                          <Text>Name E Title</Text>
-                                      </View>
-                                  </View>
-                                    
-                              </View>
-                          )}
-                      /> 
-              }
-          </View>
+                      name='check'
+                      size={23}
+                      color="white"
+                    />
+                    <Text style={{fontWeight:'bold', color:'white', fontSize:"14"}}>Eu quero</Text>
+                    
+                </TouchableOpacity>
+                </View>
+                </View>
+                
     
-            <StatusBar style="auto" />
-      </View>
+  </View>
+);
+ const Home=()=>{
+    const [selectedId, setSelectedId] = useState(null);
+    const renderItem = ({ item }) => {
+      const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+      const color = item.id === selectedId ? 'white' : 'black';
+      return (
+        <Item
+          item={item}
+          onPress={() => setSelectedId(item.id)}
+          image={{uri: item.image}}
+          post={{uri: item.post}}
+
+        />
+      );
+    };
+    return (
+    <View style={styles.container}>
+      <FlatList
+        ListHeaderComponent={Header}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
+        showsVerticalScrollIndicator={false}
+      />
+
+      <StatusBar style="auto" />
+    </View>             
   );
 }
 export default Home
 
 const styles = StyleSheet.create({
-  mainView:{
-      flexDirection:'row',
-      marginTop:30,
-      justifyContent: 'center',
-      flex:1
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ffff',
   },
-  Heading:{
-      fontSize:18,
-      fontWeight:'bold',
-      color: '#34816F',
-      marginHorizontal: 90
-  },
-  containerInputSearch:{
-      marginTop: 30,
-      flexDirection: 'row',
-      flex:1,
-      justifyContent:'center',
-  },
-  searchInput:{ 
-    width: '90%',
-    height: 39,
-    borderRadius: 10, 
-    backgroundColor:"white",
-    borderWidth:2.5,
-    borderColor:"#D0BAF3",
-    fontSize: 18
-  },
-  propaganda:{
-    marginTop: 30,
-    flexDirection: 'row',
-    flex:1,
+  item: {
+    padding: 20,
+    marginVertical: 70,
+    height:'100%',
+    width:'90%',
     alignSelf:'center',
-    backgroundColor:"gray",
-    width:'85%',
-    height:'90'
+    marginBottom:'70%'
   },
-  mainPostView:{
-    width:'100%',  
+  title: {
+    fontSize: 14,
   },
-  postTtile:{
-    width:'90%',
-    display:'flex',
-    justifyContent:'space-between',
-    flexDirection:'row'
-  },
-  postView:{
-    width:'90%',
-    alignItems:'center',
-    marginTop:'20',
-  },
-  artistPhoto:{
-    backgroundColor:'rgba(0,0,0,0.06)',
-    width:50,
-    height:50,
-    borderRadius:50,
-  },
-  imageView:{
-    display:'flex',
-    flexDirection:'row'
-  }
-});
+  feedItem: {
+    backgroundColor: "#DCDCDC",
+    borderRadius: 5,
+    padding: 8,
+    flexDirection: "row",
+    marginVertical: 8,
+    width:'95%',
+    alignSelf:'center',
+},
+avatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginRight: 16
+},
+name: {
+  fontSize: 15,
+  fontWeight: "500",
+  color: "#454D65"
+},
+post: {
+    marginTop: 11,
+    fontSize: 14,
+    color: "#black",
+    marginBottom: 4,
+},
+postImage: {
+    width: undefined,
+    height: 190,
+    borderRadius: 5,
+    marginVertical: 16
+},
+True: {
+  alignSelf: 'right', 
+  marginTop:'5', 
+  backgroundColor:'#987FC0', 
+  width:"31%", 
+  flexDirection:'row',
+  borderRadius:'10%'
+
+},
+False:{
+  alignSelf: 'right', 
+  marginTop:'5', 
+  backgroundColor:'pink', 
+  width:"30%", 
+  flexDirection:'row'
+}
+})
