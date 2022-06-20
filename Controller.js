@@ -7,11 +7,11 @@ const app=express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-let User=models.User;
+let user=models.User;
 let token=models.token;
 
 app.post('/login',async (req,res)=>{
-    let response=await User.findOne({
+    let response=await user.findOne({
         where:{email:req.body.email, senha: req.body.senha}
     });
     if(response === null){
@@ -25,18 +25,15 @@ app.post('/login',async (req,res)=>{
 
 app.post('/cadastro',async (req,res)=>{
     let response = await user.create({
-            email: req.body.email,
-            nome: req.body.name,
-            senha: req.body.senha,
+            email: "a@a.com",
+            nome: "Joao",
+            senha: "123",
+            createdAt: new Date(),
+            updatedAt: new Date()
             
         });
 
-    if(response === null){
-        res.send(JSON.stringify('error'));
-    }else{
-        res.send(response);
-        console.log(response)
-    }
+    res.send('usuário criado')
 });
 
 //Grava o token no banco

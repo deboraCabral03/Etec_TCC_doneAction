@@ -42,8 +42,8 @@ export default function Login({ navigation }) {
     //função para enviar o formulario para o controller
   async function sendForm()
   {
-      let response=await fetch('http://172.20.10.6:3000/login',{
-          method: 'GET',
+      let response=await fetch('http://localhost:19006/login',{
+          method: 'POST',
           headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json'
@@ -111,13 +111,13 @@ export default function Login({ navigation }) {
         </TouchableOpacity> 
 
         <TouchableOpacity style={styles.mensagem}
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() => login()}>
           <Text style={styles.acesso}>  Acessar </Text>
         </TouchableOpacity> 
 
        <Text style={styles.conta}> Não tem uma conta? </Text>
           <TouchableOpacity style={styles.insc}
-            onPress={ () => navigation.navigate('Register')}>
+            onPress={() => login()}>
             <Text style={styles.inscrever}>  INSCREVA-SE</Text>
           </TouchableOpacity> 
               <Text style={{marginLeft: 90, marginTop: -160, fontSize:'18',}}> ou entre com </Text>
