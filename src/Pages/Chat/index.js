@@ -12,13 +12,8 @@ const [searchInput, setSearchInput] = useState('');
     <View style={{flex:"1"}}>
         <View style={{marginTop:"15%", flexDirection:"row"}}>
         <TouchableOpacity style={{alignSelf:"left"}}>
-              <Feather
-              name='chevron-left'
-              size={27}
-              color="#f5cae6"
-              />
             </TouchableOpacity>
-            <Text style={{marginHorizontal:"32%", fontWeight: "bold", color:"#34816F" }}> Chat </Text>
+            <Text style={{marginHorizontal:"32%", fontWeight: "bold", color:"#34816F",  }}> Chat </Text>
               <Feather
               name='edit'
               size={25}
@@ -46,6 +41,26 @@ const [searchInput, setSearchInput] = useState('');
               />
             <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.touchable}
+            title="OI"
+            color="#0000">
+            <Feather
+              name='message-square'
+              size={20}
+              color="#34816F"
+              />
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchable}
+            title="OI"
+            color="#0000">
+            <Feather
+              name='message-square'
+              size={20}
+              color="#34816F"
+              />
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            </TouchableOpacity>
             
             </ScrollView>
         </View>
@@ -54,8 +69,6 @@ const [searchInput, setSearchInput] = useState('');
 
    );
 }
-
-
         
 const styles = StyleSheet.create({
   searchInput:{
@@ -80,14 +93,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderWidth: 1, 
     borderColor: '#A9A9A9',
-    width: '97%',
-    height:"70%",
+    width: '95%',
+    height:"9%",
     borderRadius : 1 ,
     paddingVertical : 10 , 
-    paddingHorizontal : 12, 
-  
+    paddingHorizontal : 12,
+    marginTop: '1%',
+    paddingBottom:"9%",
+    paddingTop:'-3%',
   },
-  
+
   container:{
     backgroundColor:"#D8D6D6", 
     marginTop:"4%", 
@@ -97,4 +112,11 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     height:"50%",
   },
+
+  avatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginRight: 16
+},
   });

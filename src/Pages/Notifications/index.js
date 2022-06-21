@@ -28,7 +28,7 @@ export default function App() {
               size={20}
               color="#34816F"
               />
-            <Text style={{marginHorizontal:"12%"}}> Você recebeu uma denúncia, veja. </Text>
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
 
           </TouchableOpacity>
           <TouchableOpacity style={styles.touchable}
@@ -80,7 +80,7 @@ export default function App() {
               size={20}
               color="#34816F"
               />
-            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Murilo Cavalcanti: posso fazer a entrega na estação Pinheiros ou... </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchable}
             title="OI"
@@ -90,7 +90,7 @@ export default function App() {
               size={20}
               color="#34816F"
               />
-            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Vitor Gomes: posso fazer a entrega na estação Pinheiros ou... </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchable}
             title="OI"
@@ -100,7 +100,7 @@ export default function App() {
               size={20}
               color="#34816F"
               />
-            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Brenda Lucena: posso fazer a entrega na estação Pinheiros ou... </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchable}
             title="OI"
@@ -110,7 +110,7 @@ export default function App() {
               size={20}
               color="#34816F"
               />
-            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Você recebeu uma denúncia, veja. </Text>
+            <Text style={{marginHorizontal:"12%", marginVertical: "-11%"}}> Camila Cesco: posso fazer a entrega na estação Pinheiros ou... </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchable}
             title="OI"
@@ -163,11 +163,12 @@ const styles = StyleSheet.create({
     borderColor: '#f5cae6',
     width: '95%',
     height:"9%",
-    borderRadius : 5 ,
+    borderRadius : 5,
     paddingVertical : 10 , 
     paddingHorizontal : 12, 
-    marginTop: '1%'
-  
+    marginTop: '1%',
+    paddingBottom:"9%",
+    paddingTop:'-3%',
   },
 
   container:{
@@ -176,10 +177,8 @@ const styles = StyleSheet.create({
     width:"95%",
     borderWidth: 2, 
     borderColor: '#34816F',
-    borderRadius : 5 ,
+    borderRadius : 5,
     alignSelf:"center",
     height:"70%",
-    
-
   },
   });

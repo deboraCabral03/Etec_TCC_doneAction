@@ -25,11 +25,13 @@ app.post('/login',async (req,res)=>{
 
 app.post('/cadastro',async (req,res)=>{
     let response = await user.create({
-            email: "a@a.com",
-            nome: "Joao",
-            senha: "123",
-            createdAt: new Date(),
-            updatedAt: new Date()
+        nome: "Debora Cabral",
+        email: "debora@etec.com",
+        user: "deboracabral",
+        senha: "123",
+        aniversario: "12/09/2000",
+        createdAt: new Date(),
+        updatedAt: new Date(),
             
         });
 
