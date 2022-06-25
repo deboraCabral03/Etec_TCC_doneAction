@@ -33,53 +33,49 @@ const DATA = [
   },
   {
     id: "08624a0f-3da1-471f-bd96-145571e29d72",
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Geladeira em bom estado, apenas 3 anos de uso, estou doando pois irei mudar para outra cidade.",
     image:require("../Images/perfil4.jpeg"),
     name: "Camila Cesco",
     post:require("../Images/doacao2.jpeg"),
   },
   {
     id: "67624a0f-3da1-471f-bd96-145571e29d72",
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Fogão quatro bocas, inox, em ótimo estado e todas as bocas funcionando.",
     image:require("../Images/doacao5.jpeg"),
     name: "Stefany Cardoso",
     post:require("../Images/perfil5.jpeg"),
   },
 ];
+
 const Item = ({ item, onPress, backgroundColor, textColor, }) => (
-  <View style={styles.feedItem}>
-                <Image  
-                    source={item.image}
-                    style={styles.avatar}/>
-                <View style={{ flex: 1 }}>
+    <View style={styles.feedItem}>
+        <Image source={item.image} style={styles.avatar}/>
+            <View style={{ flex: 1 }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 </View>
-                
                 <View>
                     <Text style={styles.name}>{item.name}</Text>
-                    <Image source={item.post} style={styles.postImage} resizeMode="cover" />
-                    <Text style={styles.post}>{item.title}</Text>
-                    <TouchableOpacity style={styles.True}>
-                      <Feather 
-                      name='check'
-                      size={23}
-                      color="white"
-                    />
-                    <Text style={{fontWeight:'bold', color:'white', fontSize:"14"}}>Eu quero</Text>
+                        <Image source={item.post} style={styles.postImage} resizeMode="cover" />
+                            <Text style={styles.post}>{item.title}</Text>
+                                <TouchableOpacity style={styles.pubTouchable} onPress={() => changeColor()}>
+                                    <Feather 
+                                      name='check'
+                                      size={23}
+                                      color="white"
+                                    />
+                                        <Text style={{fontWeight:'bold', color:'white', fontSize:"14"}}>Eu quero</Text>
                     
-                </TouchableOpacity>
+                                </TouchableOpacity>
                 </View>
-                </View>
-                
-    
-  </View>
+            </View>
+    </View>
 );
  const Home=()=>{
     const [selectedId, setSelectedId] = useState(null);
     const renderItem = ({ item }) => {
-      const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-      const color = item.id === selectedId ? 'white' : 'black';
-      return (
+    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const color = item.id === selectedId ? 'white' : 'black';
+    return (
         <Item
           item={item}
           onPress={() => setSelectedId(item.id)}
@@ -87,21 +83,20 @@ const Item = ({ item, onPress, backgroundColor, textColor, }) => (
           post={{uri: item.post}}
 
         />
-      );
-    };
+  );
+};
     return (
-    <View style={styles.container}>
-      <FlatList
-        ListHeaderComponent={Header}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-        showsVerticalScrollIndicator={false}
-      />
-
-      <StatusBar style="auto" />
-    </View>             
+        <View style={styles.container}>
+            <FlatList
+              ListHeaderComponent={Header}
+              data={DATA}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              extraData={selectedId}
+              showsVerticalScrollIndicator={false}
+            />
+          <StatusBar style="auto" />
+        </View>             
   );
 }
 export default Home
@@ -111,7 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#ffff',
-  },
+},
   item: {
     padding: 20,
     marginVertical: 70,
@@ -119,10 +114,10 @@ const styles = StyleSheet.create({
     width:'90%',
     alignSelf:'center',
     marginBottom:'70%'
-  },
+},
   title: {
     fontSize: 14,
-  },
+},
   feedItem: {
     backgroundColor: "#DCDCDC",
     borderRadius: 5,
@@ -132,43 +127,35 @@ const styles = StyleSheet.create({
     width:'95%',
     alignSelf:'center',
 },
-avatar: {
+  avatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
     marginRight: 16
 },
-name: {
+  name: {
   fontSize: 15,
   fontWeight: "500",
   color: "#454D65"
 },
-post: {
+  post: {
     marginTop: 11,
     fontSize: 14,
     color: "#black",
     marginBottom: 4,
 },
-postImage: {
+  postImage: {
     width: undefined,
     height: 190,
     borderRadius: 5,
     marginVertical: 16
 },
-True: {
-  alignSelf: 'right', 
-  marginTop:'5', 
-  backgroundColor:'#987FC0', 
-  width:"31%", 
-  flexDirection:'row',
-  borderRadius:'10%'
-
+  pubTouchable: {
+    alignSelf: 'right', 
+    marginTop:'5', 
+    backgroundColor:'#987FC0', 
+    width:"31%", 
+    flexDirection:'row',
+    borderRadius:'10%'
 },
-False:{
-  alignSelf: 'right', 
-  marginTop:'5', 
-  backgroundColor:'pink', 
-  width:"30%", 
-  flexDirection:'row'
-}
 })
