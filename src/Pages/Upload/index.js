@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableHighlight, Image,ImageBackground, Scro
 import Constants from 'expo-constants';
 import {Input} from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
-import { Feather } from '@expo/vector-icons';
+import { Feather, MaterialIcons } from '@expo/vector-icons';
 
 export default function Upload({ navigation }) {    
     const [donation, setDonation] = React.useState (null);
@@ -23,18 +23,17 @@ export default function Upload({ navigation }) {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{flex:'1', backgroundColor:'white'}}>
     <View style={styles.container}>
-    
-    <TouchableHighlight style={styles.imagePicker} onPress={escolherImagem}>
-    <Feather name='plus' color="#FFFF" size={35} style={styles.icon}/>
-    </TouchableHighlight>
-
     <Image source={{uri:donation}} style={styles.donation} />
-    
-  
+    </View>
     <View style={styles.view}>
-
+    
+    
+    <TouchableOpacity style={styles.editPick} onPress={escolherImagem}>
+    <MaterialIcons name='add-photo-alternate' color="#34816F" size={30}/>
+    </TouchableOpacity>
+  
         <Input style={styles.input}
           placeholder="Nome do Produto" 
           autocorrect={false}
@@ -56,8 +55,8 @@ export default function Upload({ navigation }) {
           onChangeText={()=>{} }/>      
 
       
-       </View>
-       <Text style={{color: '#34816F', fontSize: 23, fontWeight: 'bold', marginTop: -80}}> DESCRIÇÃO </Text>
+       
+       <Text style={{color: '#34816F', fontSize: 23, fontWeight: 'bold'}}> DESCRIÇÃO </Text>
         
        <Input style={styles.description}
           placeholder="Descreva detalhes da sua doação." 
@@ -78,33 +77,27 @@ export default function Upload({ navigation }) {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     backgroundColor: '#ecf0f1',
+    width:'100%',
+    height:'50%',
+    marginBottom:'2%',
   },
 
   imagePicker: {
-        backgroundColor: '#34816F',
-        width: 80,
-        height: 80,
-        alignSelf: 'left',
-        borderRadius: 10,
-        marginRight: '50%',
-        marginLeft:-7,
-        marginTop: '20%',
-       // marginBottom: '10%'
+        alignSelf: 'center',
+        marginTop:'45%'
+  },
+  editPick:{  
+    alignItems: 'center',
+    alignSelf:'right',
+    marginBottom: '2%',
   },
 
   donation:{
-        width: 250,
-        height: 250,
+        width: '100%',
+        height: '100%',
         alignSelf: 'center',
-        marginTop: -85,
-        marginBottom: '5%',
-        marginRight: '30%',
-        borderRadius: 10,
-        marginLeft:'20%'
-
+        position:'absolute',
   },
 
   icon:{
@@ -120,13 +113,15 @@ const styles = StyleSheet.create({
 
  input:{
         backgroundColor: '#ffff',
-        marginTop: '2%'
+        marginTop: '2%',
  },
 
  description:{
         backgroundColor: '#ffff', 
-        padding: '20%',
-        alignText:'start'
+        padding: '12%',
+        alignText:'top',
+        marginTop:'5%',
+        marginBottom:'12%'
  },
 
   publication:{

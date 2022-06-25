@@ -141,18 +141,6 @@ export default function App() {
    );
 }
 
-//const Tab = createBottomTabNavigator();
-
-//export default function App() {
-//  return (
-//    <NavigationContainer>
-//      <Tab.Navigator>
-//        <Tab.Screen name="Notificações" component={NotificationsScreen} />
-//      </Tab.Navigator>
-//    </NavigationContainer>
-//  );
-//}
-
 const styles = StyleSheet.create({
   touchable:{
     backgroundColor:'white',

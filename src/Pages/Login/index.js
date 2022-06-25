@@ -59,12 +59,12 @@ export default function Login({ navigation }) {
           setErrorEmail("E-mail ou senha incorreto!")
           setErrorPassword("E-mail ou senha incorreto!")
           await AsyncStorage.clear();
-    }else{
+      }
+      else{
         await AsyncStorage.setItem('userData', JSON.stringify(json));
         navigation.navigate('Home');
-        } 
+      } 
   }
-
 
 //const chamada no onpress do botão "Acessar"
   const login = () => {
@@ -75,154 +75,140 @@ export default function Login({ navigation }) {
 
   return (
     <View style={{backgroundColor:'white',flex: '1',}}>
-    <View >
-        <Image  
-                    source={require('../Images/logo.jpeg')} 
-                    style={{width:400, alignSelf:'center', height:250, marginTop: 55, marginBottom:20}}
-                    resizeMode="contain"
+        <View >
+            <Image  
+              source={require('../Images/logo.jpeg')} 
+              style={{width:400, alignSelf:'center', height:250, marginTop: 55, marginBottom:20}}
+              resizeMode="contain"
+            />
+        </View>    
+            <View style={styles.container}>
+                <Input
+                  style={styles.caixa}
+                  placeholder="  Email" 
+                  //autocorrect={false}
+                  onChangeText={value =>{ 
+                    setEmail(value)
+                    setErrorEmail(null)
+                  }}
+                  keyboardType="email-address"
+                  errorMessage={errorEmail}
                 />
-    </View>    
-    <View style={styles.container}>
-        <Input
-          style={styles.caixa}
-          placeholder="  Email" 
-          //autocorrect={false}
-          onChangeText={value =>{ 
-            setEmail(value)
-            setErrorEmail(null)
-          }}
-          keyboardType="email-address"
-          errorMessage={errorEmail}
-        />
-        <Input
-          style={styles.caixa}
-          placeholder="  Senha" 
-          //autocorrect={false}
-          onChangeText={value =>{
-            setErrorPassword(null)
-            setPassword(value)
-          }}
-          secureTextEntry={true}
-          errorMessage={errorPassword}
-        />
-        <TouchableOpacity style={styles.componente}
-         onPress={ () => navigation.navigate('forgotPassword')}>
-          <Text style={styles.registro}> Esqueceu a senha?</Text>
-        </TouchableOpacity> 
-
-        <TouchableOpacity style={styles.mensagem}
-          onPress={() => login()}>
-          <Text style={styles.acesso}>  Acessar </Text>
-        </TouchableOpacity> 
-
-       <Text style={styles.conta}> Não tem uma conta? </Text>
-          <TouchableOpacity style={styles.insc}
-            onPress={ () => navigation.navigate('Register')}>
-            <Text style={styles.inscrever}>  INSCREVA-SE</Text>
-          </TouchableOpacity> 
-              <Text style={{marginLeft: 90, marginTop: -160, fontSize:'18',}}> ou entre com </Text>
-              <View style={styles.socialMidiaIcon}>
-                <TouchableOpacity style={styles.touchableSocialMidia}>
-                    <MaterialCommunityIcons 
-                      name='facebook'
-                      size={29}
-                      color="white"
-                    />
-                </TouchableOpacity>    
-                <TouchableOpacity style={styles.touchableSocialMidia}>
-                    <AntDesign 
-                      name='google'
-                      size={28}
-                      color="white"
-                    />
-                </TouchableOpacity>
-            </View>
-   </View>
+                <Input
+                  style={styles.caixa}
+                  placeholder="  Senha" 
+                  //autocorrect={false}
+                  onChangeText={value =>{
+                    setErrorPassword(null)
+                    setPassword(value)
+                  }}
+                  secureTextEntry={true}
+                  errorMessage={errorPassword}
+                />
+                <TouchableOpacity style={styles.componente}
+                  onPress={ () => navigation.navigate('forgotPassword')}>
+                      <Text style={styles.registro}> Esqueceu a senha?</Text>
+                </TouchableOpacity> 
+                <TouchableOpacity style={styles.mensagem}
+                  onPress={() => login()}>
+                      <Text style={styles.acesso}>  Acessar </Text>
+                </TouchableOpacity> 
+                    <Text style={styles.conta}> Não tem uma conta? </Text>
+                        <TouchableOpacity style={styles.insc}
+                          onPress={ () => navigation.navigate('Register')}>
+                              <Text style={styles.inscrever}>  INSCREVA-SE</Text>
+                        </TouchableOpacity> 
+                            <Text style={{marginLeft: 90, marginTop: -160, fontSize:'18',}}> ou entre com </Text>
+                                <View style={styles.socialMidiaIcon}>
+                                    <TouchableOpacity style={styles.touchableSocialMidia}>
+                                      <MaterialCommunityIcons 
+                                        name='facebook'
+                                        size={29}
+                                        color="white"
+                                      />
+                                    </TouchableOpacity>    
+                                    <TouchableOpacity style={styles.touchableSocialMidia}>
+                                      <AntDesign 
+                                        name='google'
+                                        size={28}
+                                        color="white"
+                                      />
+                                    </TouchableOpacity>
+          </View>
+      </View>
   </View>
  );
 }
 const styles = StyleSheet.create({
- container: {
-   justifyContent: 'center',
-   backgroundColor: 'white',
-   padding: 8,
- },
-  
+  container: {
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding: 8,
+}, 
   icon:{
-     width: 340,
-     height: 355,
-     marginRight: 40,
-     marginLeft: -20,
-     marginBottom:190,
-     marginTop: -150
-  },
-
- caixa: {    
-   backgroundColor:'#EAEAEA',
-   alignItems: "center",
-   color: '#222',
-   fontSize: 14,
-   borderRadius: 100,
-    },
-
- mensagem:{
-   backgroundColor:'#34816F',
-   alignItems: "center",
-   marginTop: 12,
-   marginBottom:160,
-   color: '#222',
-   fontSize: 14,
-   borderRadius: 100,
-   padding:7, 
-   marginLeft: 40,
-   marginRight: 40,
-   },
-
- acesso:{ 
-     color: '#fff',
-     fontSize: 18
-   },
-
- componente:{
-        alignItems: "center",
-        marginBottom:10,
-        marginLeft: 90,
-     },
-
+    width: 340,
+    height: 355,
+    marginRight: 40,
+    marginLeft: -20,
+    marginBottom:190,
+    marginTop: -150
+},
+  caixa: {    
+    backgroundColor:'#EAEAEA',
+    alignItems: "center",
+    color: '#222',
+    fontSize: 14,
+    borderRadius: 100,
+},
+  mensagem:{
+    backgroundColor:'#34816F',
+    alignItems: "center",
+    marginTop: 12,
+    marginBottom:160,
+    color: '#222',
+    fontSize: 14,
+    borderRadius: 100,
+    padding:7, 
+    marginLeft: 40,
+    marginRight: 40,
+},
+  acesso:{ 
+    color: '#fff',
+    fontSize: 18
+},
+  componente:{
+    alignItems: "center",
+    marginBottom:10,
+    marginLeft: 90,
+},
  registro:{
-       fontSize: 13,
-       fontFamily: 'arial',
-       marginLeft: '59%',
-     },
-
+    fontSize: 13,
+    fontFamily: 'arial',
+    marginLeft: '59%',
+},
   conta:{
-       marginBottom: 176,
-       marginTop: -130,
-       marginLeft: 40,
-       fontSize:'18',
-     },
-
-   insc:{ 
-        marginBottom: 200,
-       marginTop: -194,
-       marginLeft: 173,
-   },
-   inscrever:{  
+    marginBottom: 176,
+    marginTop: -130,
+    marginLeft: 40,
+    fontSize:'18',
+},
+  insc:{ 
+    marginBottom: 200,
+    marginTop: -194,
+    marginLeft: 173,
+},
+  inscrever:{  
     fontWeight: 'bold',
     color: '#D0BAF3'
-
-   },
-
-   socialMidiaIcon:{
+},
+  socialMidiaIcon:{
     marginTop:'8%',
     flexDirection:'row',
     alignSelf:'center'
-    
-  },
+},
   touchableSocialMidia:{
     borderRadius:'100%',
     backgroundColor:'#987FC0',
-    marginHorizontal:'8%'
-    
+    marginHorizontal:'8%' 
   }
 });
