@@ -12,6 +12,7 @@ import Profile from '../Pages/Profile';
 import Notifications from '../Pages/Notifications';
 import Upload from '../Pages/Upload';
 import Chat from '../Pages/Chat';
+import Settings from '../Pages/Settings';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -120,6 +121,14 @@ export default function Routes(){
         component = {forgotPassword}
         options = {{
             title: 'forgotPassword',
+            headerShown: false
+        }}
+      />
+      <Drawer.Screen
+        name = 'Settings'
+        component = {Settings}
+        options = {{
+            title: 'Settings',
             headerShown: false
         }}
       />

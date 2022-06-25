@@ -60,11 +60,11 @@ export default function Upload({ navigation }) {
        <Text style={{color: '#34816F', fontSize: 23, fontWeight: 'bold', marginTop: -80}}> DESCRIÇÃO </Text>
         
        <Input style={styles.description}
-          placeholder="Gênero" 
+          placeholder="Descreva detalhes da sua doação." 
           autocorrect={false}
           onChangeText={()=>{} }/> 
 
-      <TouchableOpacity style={styles.publication}>
+      <TouchableOpacity style={styles.publication} onPress={ () => navigation.navigate('Home')}>
       <Text style={{color: 'white', fontSize: 20, 
                     fontWeight: 'bold', textAlign: 
                     'center', marginTop: 5}}> 
@@ -85,9 +85,9 @@ const styles = StyleSheet.create({
 
   imagePicker: {
         backgroundColor: '#34816F',
-        width: 70,
+        width: 80,
         height: 80,
-        alignSelf: 'center',
+        alignSelf: 'left',
         borderRadius: 10,
         marginRight: '50%',
         marginLeft:-7,
@@ -96,13 +96,14 @@ const styles = StyleSheet.create({
   },
 
   donation:{
-        width: 150,
-        height: 200,
-        alignSelf: 'flex-end',
+        width: 250,
+        height: 250,
+        alignSelf: 'center',
         marginTop: -85,
         marginBottom: '5%',
         marginRight: '30%',
-        borderRadius: 10
+        borderRadius: 10,
+        marginLeft:'20%'
 
   },
 

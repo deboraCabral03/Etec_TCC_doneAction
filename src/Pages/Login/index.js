@@ -42,7 +42,7 @@ export default function Login({ navigation }) {
     //função para enviar o formulario para o controller
   async function sendForm()
   {
-      let response=await fetch('http://localhost:19006/login',{
+      let response=await fetch('http://10.0.0.102:3000/login',{
           method: 'POST',
           headers: {
               Accept: 'application/json',
@@ -53,10 +53,11 @@ export default function Login({ navigation }) {
               senha: password
           })
       });
-      let json=await response.json();
+      let json=await response.json();;
       if(json === 'error'){
-          setErrorEmail("Email ou Senha errados!")
-          setErrorPassword("Email ou Senha errados!")
+        console.log("hdhd");
+          setErrorEmail("E-mail ou senha incorreto!")
+          setErrorPassword("E-mail ou senha incorreto!")
           await AsyncStorage.clear();
     }else{
         await AsyncStorage.setItem('userData', JSON.stringify(json));
@@ -69,7 +70,6 @@ export default function Login({ navigation }) {
   const login = () => {
     if (validate()){
      sendForm()
-     navigation.navigate('Home');
     }
     }
 
@@ -117,7 +117,7 @@ export default function Login({ navigation }) {
 
        <Text style={styles.conta}> Não tem uma conta? </Text>
           <TouchableOpacity style={styles.insc}
-            onPress={() => login()}>
+            onPress={ () => navigation.navigate('Register')}>
             <Text style={styles.inscrever}>  INSCREVA-SE</Text>
           </TouchableOpacity> 
               <Text style={{marginLeft: 90, marginTop: -160, fontSize:'18',}}> ou entre com </Text>

@@ -35,7 +35,7 @@ return (
   
       <View style={styles.view2}>
       <Text style={{color: 'white', marginBottom:'40%', fontSize:17, paddingLeft:'1%', marginBottom:'3%' ,fontWeight:'bold'}}> Populares </Text>
-       <ScrollView style={styles.scrollView} horizontal={true}>
+       <ScrollView horizontal={true}>
            <Donation/>
            <Donation/>
            <Donation/>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         marginBottom:'10%'
     },
     Heading:{
-        fontSize:18,
+        fontSize:20,
         fontWeight:'bold',
         color: '#34816F',
         marginHorizontal: 90
@@ -82,13 +82,12 @@ const styles = StyleSheet.create({
     },
     view2:{
       backgroundColor:'#34816F',
-      width: '92%',
+      width: '98%',
+      alignSelf: 'center',
       height: '32%',
-      alignSelf:'center', 
-      borderRadius: 10,
-      marginTop:'13%'
+      marginBottom: '35%',
+      marginTop: '10%',
+      
     },
-    scrollView: {
-      padding: '30%'
-    },
+
   })
